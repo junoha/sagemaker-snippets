@@ -11,7 +11,7 @@ sudo -u ec2-user -i <<'EOF'
 # runtime
 ################
 echo "[INFO] Terminal setting"
-sudo yum install -y zsh tmux
+sudo yum install -y zsh tmux tree
 
 echo "[INFO] Setting Up: Git Config"
 git config --global user.name junoha
@@ -23,8 +23,9 @@ git config --global user.email jun.ohashi.42@gmail.com
 echo "[INFO] Upgrading pip"
 pip install --upgrade pip
 
-echo "[INFO] Installing PyPI packages"
-pip install tqdm
+# I already added PyPI packages in ~/SageMaker/<conda-custome-runtime> by conda, please comment out if you want additional package
+# echo "[INFO] Installing PyPI packages"
+# pip install tqdm
 
 ################
 # jupyter lab extension
