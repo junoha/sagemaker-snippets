@@ -13,6 +13,7 @@ SageMaker config and scripts.
 
 - **notebook**
   - **lifecycle** - SageMaker Notebook Instance Lifecycle Config
+  - **misc** - misc
 
 ## License Summary
 
