@@ -38,4 +38,21 @@ jupyter labextension install jupyterlab-tailwind-theme
 
 conda deactivate
 
+################
+# Install custom conda environment persisted on EBS
+################
+echo "[INFO] Install custom conda environment persisted on EBS"
+WORKING_DIR=/home/ec2-user/SageMaker/.miniconda-py38-custom
+source "$WORKING_DIR/miniconda/bin/activate"
+for env in $WORKING_DIR/miniconda/envs/*; do
+    BASENAME=$(basename "$env")
+    source activate "$BASENAME"
+    python -m ipykernel install --user --name "$BASENAME" --display-name "Custom ($BASENAME)"
+done
+# Optionally, uncomment these lines to disable SageMaker-provided Conda functionality.
+# echo "c.EnvironmentKernelSpecManager.use_conda_directly = False" >> /home/ec2-user/.jupyter/jupyter_notebook_config.py
+# rm /home/ec2-user/.condarc
 EOF
+
+echo "Restarting the Jupyter server.."
+restart jupyter-server
